@@ -43,9 +43,3 @@ def get_adjustments(x_deviation: float, y_deviation: float, output: str, distanc
         raise ValueError("Output must be either 'MOA' or 'MRAD'")
 
     return {'sight-type':output, 'x':x, 'y':y}
-
-
-print(get_adjustments(5, 10, 'MOA', system='metric'))
-print(get_adjustments(5, 10, 'MOA', system='imperial'))
-print(get_adjustments(5, 10, 'MRAD', system='metric'))
-print(get_adjustments(5, 10, 'MRAD', system='imperial'))
