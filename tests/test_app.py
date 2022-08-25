@@ -36,9 +36,13 @@ def test_get_mil_alt_distance():
     assert get_mil(5, system='metric', distance=150) == 0.9
 
 def test_get_adjustments_high():
-    assert get_adjustments(5, 10, 'MOA') == {'sight-type': 'MOA', 'x': 2.15, 'y': 4.31}
-    assert get_adjustments(5, 10, 'MRAD') == {'sight-type': 'MRAD', 'x': 0.6, 'y': 1.2}
+    assert get_adjustments(5, 10, 'MOA', system='metric') == {'sight-type': 'MOA', 'x': 2.15, 'y': 4.31}
+    assert get_adjustments(5, 10, 'MOA', system='imperial') == {'sight-type': 'MOA', 'x': 5.0, 'y': 10.0}
+    assert get_adjustments(5, 10, 'MRAD', system='metric') == {'sight-type': 'MRAD', 'x': 0.6, 'y': 1.2}
+    assert get_adjustments(5, 10, 'MRAD', system='imperial') == {'sight-type': 'MRAD', 'x': 1.39, 'y': 2.78}
 
 def test_get_adjustments_low():
-    assert get_adjustments(-5, -10, 'MOA') == {'sight-type': 'MOA', 'x': -2.15, 'y': -4.31}
-    assert get_adjustments(-5, -10, 'MRAD') == {'sight-type': 'MRAD', 'x': -0.6, 'y': -1.2}
+    assert get_adjustments(-5, -10, 'MOA', system='metric') == {'sight-type': 'MOA', 'x': -2.15, 'y': -4.31}
+    assert get_adjustments(-5, -10, 'MOA', system='imperial') == {'sight-type': 'MOA', 'x': -5.0, 'y': -10.0}
+    assert get_adjustments(-5, -10, 'MRAD', system='metric') == {'sight-type': 'MRAD', 'x': -0.6, 'y': -1.2}
+    assert get_adjustments(-5, -10, 'MRAD', system='imperial') == {'sight-type': 'MRAD', 'x': -1.39, 'y': -2.78}

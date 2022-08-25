@@ -19,7 +19,6 @@ def get_moa(delta: float, system: str, distance: int):
     # BASE_RULE: 1 moa == 1 inch (on 100 yards)
     BASE_RULE_DIST = 100
     BASE_RULE_DEVI = 1
-    print(f'system = {system}')
     if system == 'imperial':
         diff_factor = distance / BASE_RULE_DIST
         return round(delta / BASE_RULE_DEVI* diff_factor, 2)
@@ -45,5 +44,8 @@ def get_adjustments(x_deviation: float, y_deviation: float, output: str, distanc
 
     return {'sight-type':output, 'x':x, 'y':y}
 
-print(get_adjustments(-5, -10, 'MRAD'))
-print(get_adjustments(-5, -10, 'MOA'))
+
+print(get_adjustments(5, 10, 'MOA', system='metric'))
+print(get_adjustments(5, 10, 'MOA', system='imperial'))
+print(get_adjustments(5, 10, 'MRAD', system='metric'))
+print(get_adjustments(5, 10, 'MRAD', system='imperial'))
