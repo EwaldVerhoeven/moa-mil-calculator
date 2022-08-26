@@ -1,5 +1,4 @@
 from measurement.measures import Distance
-import asyncio
 
 async def get_mil(delta: float, system: str, distance: int) -> float:
     #BASE_RULE: 1 mil == 3.6 inch (on 100 yards)
@@ -44,5 +43,3 @@ async def get_adjustments(x_deviation: float, y_deviation: float, output: str, d
         raise ValueError("Output must be either 'MOA' or 'MRAD'")
 
     return {'sight-type':output, 'x':x, 'y':y}
-
-# print(asyncio.run(get_adjustments(5, 10, 'MOA', system='metric')))
