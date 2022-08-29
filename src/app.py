@@ -43,10 +43,4 @@ async def get_adjustments(x_deviation: float, y_deviation: float, output: str, d
     else:
         raise ValueError("Output must be either 'MOA' or 'MRAD'")
 
-    print({'sight-type':output, 'x':x, 'y':y})
     return {'sight-type':output, 'x':x, 'y':y}
-
-asyncio.run(get_adjustments(-5, -10, 'MOA', system='metric'))
-asyncio.run(get_adjustments(-5, -10, 'MOA', system='imperial'))
-asyncio.run(get_adjustments(-5, -10, 'MRAD', system='metric'))
-asyncio.run(get_adjustments(-5, -10, 'MRAD', system='imperial'))
