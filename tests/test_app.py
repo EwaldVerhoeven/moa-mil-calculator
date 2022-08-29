@@ -16,43 +16,43 @@ import pytest
 @pytest.mark.asyncio
 async def test_calc_moa_low():
     assert await calc_moa(-10, system='imperial', distance=100) == -10
-    assert await calc_moa(-10, system='metric', distance=100) == -4.31
+    assert await calc_moa(-10, system='metric', distance=100) == -3.6
 
 @pytest.mark.asyncio
 async def test_calc_moa_high():
     assert await calc_moa(5, system='imperial', distance=100) == 5
-    assert await calc_moa(5, system='metric', distance=100) == 2.15
+    assert await calc_moa(5, system='metric', distance=100) == 1.8
 
 @pytest.mark.asyncio
 async def test_calc_moa_alt_distance():
-    assert await calc_moa(5, system='imperial', distance=150) == 7.5
-    assert await calc_moa(5, system='metric', distance=150) == 3.23
+    assert await calc_moa(5, system='imperial', distance=150) == 3.33
+    assert await calc_moa(5, system='metric', distance=150) == 1.2
 
 @pytest.mark.asyncio
 async def test_calc_mil_low():
     assert await calc_mil(-10, system='imperial', distance=100) == -2.78
-    assert await calc_mil(-10, system='metric', distance=100) == -1.2
+    assert await calc_mil(-10, system='metric', distance=100) == -1.0
 
 @pytest.mark.asyncio
 async def test_calc_mil_high():
     assert await calc_mil(5, system='imperial', distance=100) == 1.39
-    assert await calc_mil(5, system='metric', distance=100) == 0.6
+    assert await calc_mil(5, system='metric', distance=100) == 0.5
 
 @pytest.mark.asyncio
 async def test_calc_mil_alt_distance():
-    assert await calc_mil(5, system='imperial', distance=150) == 2.08
-    assert await calc_mil(5, system='metric', distance=150) == 0.9
+    assert await calc_mil(5, system='imperial', distance=150) == 0.93
+    assert await calc_mil(5, system='metric', distance=150) == 0.33
 
 @pytest.mark.asyncio
 async def test_get_adjustments_high():
-    assert await get_adjustments(5, 10, 'MOA', system='metric') == {'sight-type': 'MOA', 'x': 2.15, 'y': 4.31}
+    assert await get_adjustments(5, 10, 'MOA', system='metric') == {'sight-type': 'MOA', 'x': 1.8, 'y': 3.6}
     assert await get_adjustments(5, 10, 'MOA', system='imperial') == {'sight-type': 'MOA', 'x': 5.0, 'y': 10.0}
-    assert await get_adjustments(5, 10, 'MRAD', system='metric') == {'sight-type': 'MRAD', 'x': 0.6, 'y': 1.2}
+    assert await get_adjustments(5, 10, 'MRAD', system='metric') == {'sight-type': 'MRAD', 'x': 0.5, 'y': 1.0}
     assert await get_adjustments(5, 10, 'MRAD', system='imperial') == {'sight-type': 'MRAD', 'x': 1.39, 'y': 2.78}
 
 @pytest.mark.asyncio
 async def test_get_adjustments_low():
-    assert await get_adjustments(-5, -10, 'MOA', system='metric') == {'sight-type': 'MOA', 'x': -2.15, 'y': -4.31}
+    assert await get_adjustments(-5, -10, 'MOA', system='metric') == {'sight-type': 'MOA', 'x': -1.8, 'y': -3.6}
     assert await get_adjustments(-5, -10, 'MOA', system='imperial') == {'sight-type': 'MOA', 'x': -5.0, 'y': -10.0}
-    assert await get_adjustments(-5, -10, 'MRAD', system='metric') == {'sight-type': 'MRAD', 'x': -0.6, 'y': -1.2}
+    assert await get_adjustments(-5, -10, 'MRAD', system='metric') == {'sight-type': 'MRAD', 'x': -0.5, 'y': -1.0}
     assert await get_adjustments(-5, -10, 'MRAD', system='imperial') == {'sight-type': 'MRAD', 'x': -1.39, 'y': -2.78}
