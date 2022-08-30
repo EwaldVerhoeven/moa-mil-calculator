@@ -17,9 +17,9 @@ async def calc_mil(delta: float, system: str, distance: int) -> float:
         return round(delta.inch / BASE_RULE_DEVI * diff_factor, 2)
 
 async def calc_moa(delta: float, system: str, distance: int) -> float:
-    # BASE_RULE: 1 moa == 1 inch (on 100 yards)
+    # BASE_RULE: 1 moa == 1.047 inch (on 100 yards)
     BASE_RULE_DIST = 100
-    BASE_RULE_DEVI = 1
+    BASE_RULE_DEVI = 1.047
     if system == 'imperial':
         diff_factor = BASE_RULE_DIST / distance
         return round(delta / BASE_RULE_DEVI* diff_factor, 2)
