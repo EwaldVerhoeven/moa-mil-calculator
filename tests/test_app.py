@@ -1,4 +1,4 @@
-from src.app import calc_moa, calc_mil, get_adjustments
+from src.calc import calc_moa, calc_mil, get_adjustments
 from hypothesis import given, strategies as st
 import pytest
 # pytest_plugins = ('pytest_asyncio',)
