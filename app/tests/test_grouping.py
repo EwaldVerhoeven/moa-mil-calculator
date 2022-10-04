@@ -1,10 +1,6 @@
-# import sys
-# print(sys.path)
 import pytest
 from grouping import Group
 from contextlib import nullcontext as does_not_raise
-
-# sys.path.append('C:\\Users\\ewald\\OneDrive - TestCoders B.V\\Documenten\\REPOS\\moa-mil-calculator\\app')
 
 
 test_1 = [
@@ -74,6 +70,7 @@ def test_group_outliers(data) -> None:
     by call to get_modified_zscore'''
     group = Group(data)
     assert group.outliers == [5]
+
 
 if __name__ == '__main__':
     pytest.main()

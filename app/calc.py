@@ -24,7 +24,7 @@ async def calc_moa(delta: float, system: str, distance: int) -> float:
     if system == 'imperial':
         diff_factor = BASE_RULE_DIST / distance
         return round(delta / BASE_RULE_DEVI * diff_factor, 2)
-    else: 
+    else:
         delta = Distance(centimeter=delta)
         distance = Distance(meter=distance)
 

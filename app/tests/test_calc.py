@@ -1,16 +1,5 @@
 from app.calc import calc_moa, calc_mil, get_adjustments
-# from hypothesis import given, strategies as st
 import pytest
-
-# @given(
-#     delta=st.floats(min_value=-25, max_value=25),
-#     system=st.sampled_from(options.SYSTEM)
-#     )
-# def test_calc_moa(delta, system):
-#     print(f'delta={delta}, system={system}')
-#     result = calc_moa(delta, system)
-#     print('test1')
-#     assert type(result) == float
 
 
 @pytest.mark.asyncio

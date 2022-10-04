@@ -1,0 +1,4 @@
+[flake8]
+extend-ignore = E501
+exclude = .git,.github,.vscode,reports,__pycache__,pytest_cache
+max-complexity = 4

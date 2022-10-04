@@ -45,7 +45,7 @@ class Group:
         threshold: -3.5/3.5
         '''
         median = np.median(data)
-        abs_diff = abs(data-median)    
+        abs_diff = abs(data-median)
         median_abs_diff = np.median(abs_diff)
         return list(0.6745 * (data - median) / median_abs_diff)
 

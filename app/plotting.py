@@ -43,7 +43,6 @@ def plot_data(figure, data: list[list[float, float]], outliers: list = None) -> 
 
     plt.axhline()
     plt.axvline()
-    
     plt.ylim([-25, 25])
     plt.xlim([-25, 25])
     plt.scatter(x, y, color="green")
