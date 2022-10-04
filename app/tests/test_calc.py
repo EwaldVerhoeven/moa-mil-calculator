@@ -1,7 +1,6 @@
-from src.calc import calc_moa, calc_mil, get_adjustments
+from app.calc import calc_moa, calc_mil, get_adjustments
 # from hypothesis import given, strategies as st
 import pytest
-# pytest_plugins = ('pytest_asyncio',)
 
 # @given(
 #     delta=st.floats(min_value=-25, max_value=25),

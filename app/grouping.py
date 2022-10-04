@@ -1,6 +1,6 @@
 import numpy as np
 import numpy.typing as npt
-from .config import MIN_DATAPOINTS_GROUP
+from config import MIN_DATAPOINTS_GROUP
 
 
 class Group:
@@ -17,18 +17,27 @@ class Group:
     def add_shot(self, shot: list[float, float]) -> None:
         self.shots.append(shot)
 
+    def calc_precision(self) -> None:
+        '''Relative standard deviation
+        formula: std/mean*100'''
+        x, y = np.array([i[0] for i in self.shots]), np.array([i[1] for i in self.shots])
+        mean_x, mean_y = x.mean(), y.mean()
+        std_x, std_y = x.std(), y.std()
+        return (std_x/mean_x*100, std_y/mean_y*100)
+
     def score_group(self) -> None:  # TODO: finish implementation
-        if self.shots_count > self._min_datapoints:
-            return 0
+        if self.shots_in_group > self._min_datapoints:
+            x, y = np.array([i[0] for i in self.shots]), np.array([i[1] for i in self.shots])
+            return [np.std(x)/x.mean() * 100, np.std(y)/y.mean() * 100]
         else:
-            raise AssertionError(f'Your group is too small. Shoot at least {self._min_datapoints} times')
+            raise ValueError(f'Group too small: must contain at least {self._min_datapoints} shots.')
 
     @property
-    def shots_count(self) -> None:
+    def shots_in_group(self) -> None:
         return len(self.shots)
 
     def __str__(self) -> None:
-        return f'{self.shots_count} shots in group: {self.shots}'
+        return f'{self.shots_in_group} shots in group: {self.shots}'
 
     def get_modified_zscore(self, data: npt.ArrayLike) -> list:
         '''
@@ -43,7 +52,7 @@ class Group:
     @property
     def outliers(self) -> list:
         '''functions returns index of outliers in original data list'''
-        if self.shots_count < self._min_datapoints:
+        if self.shots_in_group < self._min_datapoints:
             raise ValueError(f'Group too small: must contain at least {self._min_datapoints} shots.')
         else:
             x, y = np.array([i[0] for i in self.shots]), np.array([i[1] for i in self.shots])
@@ -57,16 +66,26 @@ class Group:
 
 class Session:
 
-    def __init__(self, groupings=list[Group]) -> None:
-        if groupings is None:
-            self.groupings = []
+    def __init__(self, groups=list[Group]) -> None:
+        if groups is None:
+            self.groups = []
         else:
-            for group in groupings:
-                self.groupings.append(group)
+            for group in groups:
+                self.groups.append(group)
 
     def add_group(self, group: Group) -> None:
-        pass
+        self.groups.append(group)
 
     @property
-    def groupings_count(self) -> None:
-        pass
+    def groups_count(self) -> None:
+        return len(self.groups)
+
+
+# test_1 = [
+#             [-0.7, -0.5], [0.4, -0.7], [0.6, 0.09],
+#             [-0.1, 0.6], [0.4, -0.2]
+#         ]
+
+# group = Group(test_1)
+
+# print(group.score_group())

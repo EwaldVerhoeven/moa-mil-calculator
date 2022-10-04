@@ -1,6 +1,11 @@
-from src.grouping import Group, Session
-from contextlib import nullcontext as does_not_raise
+# import sys
+# print(sys.path)
 import pytest
+from grouping import Group
+from contextlib import nullcontext as does_not_raise
+
+# sys.path.append('C:\\Users\\ewald\\OneDrive - TestCoders B.V\\Documenten\\REPOS\\moa-mil-calculator\\app')
+
 
 test_1 = [
             [-0.7, -0.5], [0.4, -0.7], [0.6, 0.09],
@@ -16,14 +21,14 @@ def test_group_add_shot(data) -> None:
     '''coverage: test add_shot method'''
     group = Group(data)
     group.add_shot([0.0, 0.1])
-    assert group.shots_count == len(data)+1
+    assert group.shots_in_group == len(data) + 1
 
 
 @pytest.mark.parametrize('data', testdata)
-def test_group_shots_count(data) -> None:
-    '''coverage: test shots_count method'''
+def test_group_shots_in_group(data) -> None:
+    '''coverage: test shots_in_group method'''
     group = Group(data)
-    assert group.shots_count == len(data)
+    assert group.shots_in_group == len(data)
 
 
 @pytest.mark.parametrize('data', testdata)
@@ -37,8 +42,8 @@ def test_group_str(data) -> None:
     'data, expectation',
     [
         [test_1, does_not_raise()],
-        [test_2, pytest.raises(AssertionError)],
-        [test_3, pytest.raises(AssertionError)]
+        [test_2, pytest.raises(ValueError)],
+        [test_3, pytest.raises(ValueError)]
     ]
 )
 def test_group_scrore_group(data, expectation) -> None:
@@ -69,3 +74,6 @@ def test_group_outliers(data) -> None:
     by call to get_modified_zscore'''
     group = Group(data)
     assert group.outliers == [5]
+
+if __name__ == '__main__':
+    pytest.main()
