@@ -1,4 +1,4 @@
-from app.calc import calc_moa, calc_mil, get_adjustments
+from calc import calc_moa, calc_mil, get_adjustments
 import pytest
 
 

@@ -1,9 +1,4 @@
 import pytest
-import sys
-from pprint import pprint
-
-pprint(sys.path)
-
 from grouping import Group
 from contextlib import nullcontext as does_not_raise
 

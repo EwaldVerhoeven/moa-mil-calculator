@@ -1,1 +1,0 @@
-# Moa and Mils calculator

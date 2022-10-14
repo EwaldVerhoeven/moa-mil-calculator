@@ -2,13 +2,17 @@ FROM python:3.10.7
 
 ENV PYTHONUNBUFFERED 1
 
-RUN mkdir /project
+RUN apt-get update
+RUN apt-get install nano
 
+
+RUN mkdir /project
 WORKDIR /project
 
-COPY requirements.txt /project/
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+COPY setup.py /project/
+
+RUN python -m pip install --upgrade pip setuptools 
+RUN pip install -e .[dev]
 
 COPY . /project/
 
