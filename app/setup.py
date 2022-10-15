@@ -1,16 +1,14 @@
 from setuptools import find_namespace_packages, setup
 
-# with open('README.md', 'r') as readme:
-#     long_description = readme.read()
+with open('../README.md', 'r') as readme:
+    long_description = readme.read()
 
 setup(
     name='moa-mil-calculator',
     version='0.0.1',
     description='zero your scope quickly and correct!',
-    long_description="test",
+    long_description=long_description,
     long_description_content_type='text/markdown',
-    # py_modules=[],
-    # package_dir={'': 'app'},
     packages=find_namespace_packages(
         include=['src', 'src.*']
     ),
