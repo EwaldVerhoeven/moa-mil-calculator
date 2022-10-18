@@ -6,3 +6,4 @@ tests/reports/*.html
 #setuptools/build-stuff
 build/
 *.egg-info/
+dist/

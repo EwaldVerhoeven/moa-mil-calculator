@@ -1,7 +1,7 @@
 from setuptools import find_namespace_packages, setup
 
-with open('../README.md', 'r') as readme:
-    long_description = readme.read()
+with open('README.md', 'r') as file:
+    long_description = file.read()
 
 setup(
     name='moa-mil-calculator',
@@ -14,7 +14,9 @@ setup(
     ),
     install_requires=[
         'measurement==3.2.0',
-        'matplotlib==3.6.0'
+        'matplotlib==3.6.0',
+        'opencv-python==4.6.0.66',
+        'numpy==1.23.0'
     ],
     extras_require={
         'dev': [
@@ -22,7 +24,8 @@ setup(
             'pytest-reporter==0.5.2',
             'pytest-reporter-html1==0.8.2',
             'pytest-asyncio==0.19.0',
-            'flake8==5.0.4'
+            'flake8==5.0.4',
+            'pre-commit==2.20.0'
             ]
     }
 )
